@@ -5,11 +5,12 @@ import android.os.Environment
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.Surface
+import android.view.SurfaceView
 import com.cxp.learningvideo.media.decoder.AudioDecoder
 import com.cxp.learningvideo.media.decoder.VideoDecoder
+import com.cxp.learningvideo.opengl.DefGLSurfaceView
 import com.cxp.learningvideo.opengl.SimpleRender
 import com.cxp.learningvideo.opengl.drawer.VideoDrawer
-import kotlinx.android.synthetic.main.activity_opengl_player.*
 import java.util.concurrent.Executors
 
 
@@ -55,7 +56,8 @@ class MultiOpenGLPlayerActivity: AppCompatActivity() {
             initPlayer(path2, Surface(it), false)
         }
         render.addDrawer(drawer)
-        gl_surface.addDrawer(drawer)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).addDrawer(drawer)
+
 
         Handler().postDelayed({
             drawer.scale(0.5f, 0.5f)
@@ -75,8 +77,8 @@ class MultiOpenGLPlayerActivity: AppCompatActivity() {
     }
 
     private fun initRender() {
-        gl_surface.setEGLContextClientVersion(2)
-        gl_surface.setRenderer(render)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setEGLContextClientVersion(2)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setRenderer(render)
     }
 
 }

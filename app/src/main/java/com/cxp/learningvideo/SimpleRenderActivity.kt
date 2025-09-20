@@ -3,11 +3,11 @@ package com.cxp.learningvideo
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.cxp.learningvideo.opengl.DefGLSurfaceView
 import com.cxp.learningvideo.opengl.SimpleRender
 import com.cxp.learningvideo.opengl.drawer.BitmapDrawer
 import com.cxp.learningvideo.opengl.drawer.IDrawer
 import com.cxp.learningvideo.opengl.drawer.TriangleDrawer
-import kotlinx.android.synthetic.main.activity_simpler_render.*
 
 
 /**
@@ -35,10 +35,11 @@ class SimpleRenderActivity : AppCompatActivity() {
     }
 
     private fun initRender(drawer: IDrawer) {
-        gl_surface.setEGLContextClientVersion(2)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setEGLContextClientVersion(2)
+
         val render = SimpleRender()
         render.addDrawer(drawer)
-        gl_surface.setRenderer(render)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setRenderer(render)
     }
 
     override fun onDestroy() {

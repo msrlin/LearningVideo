@@ -3,11 +3,11 @@ package com.cxp.learningvideo
 import android.os.Bundle
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
+import android.view.SurfaceView
 import android.view.View
 import com.cxp.learningvideo.media.decoder.AudioDecoder
 import com.cxp.learningvideo.media.decoder.VideoDecoder
 import com.cxp.learningvideo.media.muxer.MP4Repack
-import kotlinx.android.synthetic.main.activity_simple_player.*
 import java.util.concurrent.Executors
 
 
@@ -34,7 +34,7 @@ class SimplePlayerActivity: AppCompatActivity() {
     private fun initPlayer() {
         val threadPool = Executors.newFixedThreadPool(10)
 
-        videoDecoder = VideoDecoder(path, sfv, null)
+        videoDecoder = VideoDecoder(path, findViewById<SurfaceView>(R.id.sfv), null)
         threadPool.execute(videoDecoder)
 
         audioDecoder = AudioDecoder(path)

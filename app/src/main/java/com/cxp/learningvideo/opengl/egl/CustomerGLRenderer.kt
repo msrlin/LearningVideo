@@ -102,6 +102,7 @@ class CustomerGLRenderer : SurfaceHolder.Callback {
 
         private val mWaitLock = Object()
 
+
         private var mCurTimestamp = 0L
 
         private var mLastTimestamp = 0L
@@ -147,9 +148,10 @@ class CustomerGLRenderer : SurfaceHolder.Callback {
         }
 
         fun notifySwap(timeUs: Long) {
-            synchronized(mCurTimestamp) {
-                mCurTimestamp = timeUs
-            }
+            mCurTimestamp = timeUs
+//            synchronized(mCurTimestamp) {
+//                mCurTimestamp = timeUs
+//            }
             notifyGo()
         }
 
@@ -231,14 +233,20 @@ class CustomerGLRenderer : SurfaceHolder.Callback {
             val render = if (mRenderMode == RenderMode.RENDER_CONTINUOUSLY) {
                 true
             } else {
-                synchronized(mCurTimestamp) {
-                    if (mCurTimestamp > mLastTimestamp) {
-                        mLastTimestamp = mCurTimestamp
-                        true
-                    } else {
-                        false
-                    }
+                if (mCurTimestamp > mLastTimestamp) {
+                    mLastTimestamp = mCurTimestamp
+                    true
+                } else {
+                    false
                 }
+//                synchronized(mCurTimestamp) {
+//                    if (mCurTimestamp > mLastTimestamp) {
+//                        mLastTimestamp = mCurTimestamp
+//                        true
+//                    } else {
+//                        false
+//                    }
+//                }
             }
 
             if (render) {

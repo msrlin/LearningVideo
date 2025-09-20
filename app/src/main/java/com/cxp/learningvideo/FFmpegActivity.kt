@@ -5,8 +5,10 @@ import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.view.Surface
 import android.view.SurfaceHolder
+import android.view.SurfaceView
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_ffmpeg_info.*
 import java.io.File
 
 
@@ -27,13 +29,14 @@ class FFmpegActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ffmpeg_info)
-        tv.text = ffmpegInfo()
+        findViewById<TextView>(R.id.tv).text = ffmpegInfo()
+
         initSfv()
     }
 
     private fun initSfv() {
         if (File(path).exists()) {
-            sfv.holder.addCallback(object : SurfaceHolder.Callback {
+            findViewById<SurfaceView>(R.id.sfv).holder.addCallback(object : SurfaceHolder.Callback {
                 override fun surfaceChanged(holder: SurfaceHolder, format: Int,
                                             width: Int, height: Int) {}
                 override fun surfaceDestroyed(holder: SurfaceHolder) {}

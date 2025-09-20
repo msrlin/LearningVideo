@@ -37,7 +37,9 @@ class MMExtractor(path: String?) {
 
     init {
         mExtractor = MediaExtractor()
-        mExtractor?.setDataSource(path)
+        if (path != null) {
+            mExtractor?.setDataSource(path)
+        }
     }
 
     /**
@@ -47,9 +49,11 @@ class MMExtractor(path: String?) {
         for (i in 0 until mExtractor!!.trackCount) {
             val mediaFormat = mExtractor!!.getTrackFormat(i)
             val mime = mediaFormat.getString(MediaFormat.KEY_MIME)
-            if (mime.startsWith("video/")) {
-                mVideoTrack = i
-                break
+            if (mime != null) {
+                if (mime.startsWith("video/")) {
+                    mVideoTrack = i
+                    break
+                }
             }
         }
         return if (mVideoTrack >= 0)
@@ -64,9 +68,11 @@ class MMExtractor(path: String?) {
         for (i in 0 until mExtractor!!.trackCount) {
             val mediaFormat = mExtractor!!.getTrackFormat(i)
             val mime = mediaFormat.getString(MediaFormat.KEY_MIME)
-            if (mime.startsWith("audio/")) {
-                mAudioTrack = i
-                break
+            if (mime != null) {
+                if (mime.startsWith("audio/")) {
+                    mAudioTrack = i
+                    break
+                }
             }
         }
         return if (mAudioTrack >= 0) {

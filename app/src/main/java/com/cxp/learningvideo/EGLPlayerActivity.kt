@@ -12,7 +12,6 @@ import com.cxp.learningvideo.media.decoder.AudioDecoder
 import com.cxp.learningvideo.media.decoder.VideoDecoder
 import com.cxp.learningvideo.opengl.drawer.VideoDrawer
 import com.cxp.learningvideo.opengl.egl.CustomerGLRenderer
-import kotlinx.android.synthetic.main.activity_egl_player.*
 import java.util.concurrent.Executors
 
 
@@ -82,6 +81,6 @@ class EGLPlayerActivity: AppCompatActivity() {
     }
 
     private fun setRenderSurface() {
-        mRenderer.setSurface(sfv)
+        mRenderer.setSurface(findViewById(R.id.sfv))
     }
 }

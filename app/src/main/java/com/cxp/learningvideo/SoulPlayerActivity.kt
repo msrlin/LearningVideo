@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Surface
 import com.cxp.learningvideo.media.decoder.AudioDecoder
 import com.cxp.learningvideo.media.decoder.VideoDecoder
+import com.cxp.learningvideo.opengl.DefGLSurfaceView
 import com.cxp.learningvideo.opengl.SimpleRender
 import com.cxp.learningvideo.opengl.drawer.IDrawer
 import com.cxp.learningvideo.opengl.drawer.SoulVideoDrawer
-import kotlinx.android.synthetic.main.activity_opengl_player.*
 import java.util.concurrent.Executors
 
 
@@ -38,10 +38,10 @@ class SoulPlayerActivity: AppCompatActivity() {
         drawer.getSurfaceTexture {
             initPlayer(Surface(it))
         }
-        gl_surface.setEGLContextClientVersion(2)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setEGLContextClientVersion(2)
         val render = SimpleRender()
         render.addDrawer(drawer)
-        gl_surface.setRenderer(render)
+        findViewById<DefGLSurfaceView>(R.id.gl_surface).setRenderer(render)
     }
 
     private fun initPlayer(sf: Surface) {

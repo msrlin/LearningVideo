@@ -5,6 +5,7 @@ import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.view.Surface
 import android.view.View
+import android.widget.Button
 import com.cxp.learningvideo.media.BaseDecoder
 import com.cxp.learningvideo.media.Frame
 import com.cxp.learningvideo.media.IDecoder
@@ -16,9 +17,9 @@ import com.cxp.learningvideo.media.encoder.BaseEncoder
 import com.cxp.learningvideo.media.encoder.DefEncodeStateListener
 import com.cxp.learningvideo.media.encoder.VideoEncoder
 import com.cxp.learningvideo.media.muxer.MMuxer
+import com.cxp.learningvideo.opengl.DefGLSurfaceView
 import com.cxp.learningvideo.opengl.drawer.VideoDrawer
 import com.cxp.learningvideo.opengl.egl.CustomerGLRenderer
-import kotlinx.android.synthetic.main.activity_synthesizer.*
 import java.util.concurrent.Executors
 
 
@@ -53,8 +54,9 @@ class SynthesizerActivity: AppCompatActivity(), MMuxer.IMuxerStateListener {
     }
 
     fun onStartClick(view: View) {
-        btn.text = "正在编码"
-        btn.isEnabled = false
+
+        findViewById<Button>(R.id.btn).text = "正在编码"
+        findViewById<Button>(R.id.btn).isEnabled = false
         initVideo()
         initAudio()
         initAudioEncoder()
@@ -132,8 +134,8 @@ class SynthesizerActivity: AppCompatActivity(), MMuxer.IMuxerStateListener {
 
     override fun onMuxerFinish() {
         runOnUiThread {
-            btn.isEnabled = true
-            btn.text = "编码完成"
+            findViewById<Button>(R.id.btn).isEnabled = true
+            findViewById<Button>(R.id.btn).text = "编码完成"
         }
 
         audioDecoder?.stop()

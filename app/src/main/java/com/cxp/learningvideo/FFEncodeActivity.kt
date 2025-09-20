@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_ff_repack.*
-import kotlin.concurrent.thread
 
 
 /**
@@ -28,7 +27,7 @@ class FFEncodeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ff_repack)
-        btn.text = "开始编码"
+        findViewById<Button>(R.id.btn).text = "开始编码"
 
         ffEncoder = initEncoder(srcPath, destPath)
     }
